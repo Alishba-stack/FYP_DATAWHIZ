@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+    <title>Solutions</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}" />
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{{ url_for('static', filename='responsive.css') }}" rel="stylesheet" />
+    <style>
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      #services {
+  background: #fff;
+  background-size: cover;
+  padding: 80px 0 60px 0;
+}
+
+#services .box {
+  padding: 50px 20px;
+  margin-bottom: 50px;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  height: 230px;
+  position: relative;
+  background: #fafafa;
+}
+
+#services .icon {
+  position: absolute;
+  top: -36px;
+  left: calc(50% - 36px);
+  transition: 0.2s;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 72px;
+  height: 72px;
+  background: #f1db25;
+}
+
+#services .icon a {
+  display: inline-block;
+}
+
+#services .icon i {
+  color: #fff;
+  font-size: 24px;
+  line-height: 2;
+}
+
+#services .box:hover .icon {
+  background: #fff;
+  border: 2px solid #f1db25;
+}
+
+#services .box:hover .icon i {
+  color: #f1db25;
+}
+
+#services .box:hover .icon a {
+  color: #fbbd08;
+}
+
+#services .title {
+  font-weight: 700;
+  font-family: sans-serif;
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+#services .title a {
+  color: #111;
+}
+
+#services .description {
+  font-size: 14px;
+  line-height: 24px;
+}
+h3{
+  font-weight: bold;
+  font-family: sans-serif;
+}
+h3::after {
+  display: inline-block;
+    content: "";
+    border-top: .1rem solid black;
+    width: 10rem;
+    margin: 0 1rem;
+    margin-bottom: -10px;
+    transform: translateY(-1rem);
+   
+}
+.hero_bg_box {
+    background-color: black;
+}
+    </style>
+</head>
+
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <div class="hero_bg_box">
+      <div class="img-box">
+        
+            </div>
+        </div>
+
+        <header class="header_section">
+            <div class="header_top">
+                <div class="container-fluid">
+                    <div class="contact_link-container">
+                        <a href="{{ map_link }}" class="{{ map_class }}">
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            <span>
+                                Capital University of Science & Technology
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="header_bottom">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg custom_nav-container">
+                        <a class="navbar-brand" href="{{ url_for('index') }}">
+                            <span>
+                                DataWhiz
+                            </span>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class=""></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+                            <ul class="navbar-nav  ">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('index') }}">Home <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('about') }}"> About</a>
+                                </li>
+                                <li class="nav-item active">
+                                  <a class="nav-link" href="{{ url_for('solutions') }}"> Solutions </a>
+                              </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('contact') }}">Contact us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- end header section -->
+  </div>
+
+    <!-- service section -->
+
+   
+        <section id="services">
+          <div class="container" data-aos="fade-up">
+            <div class="section-header">
+              <div class="heading_container heading_center">
+                <h2>
+                  Charts & Metrices 
+                </h2>
+              </div>
+              <br>
+              <br>
+              <h3 class="section-title">Univariate Graphs</h3>
+              <p class="section-description">Univariate graphs are used to visualize data distributions and characteristics of a single variable. They help in understanding the central tendency, dispersion, and shape of the data. Below are some common types of univariate graphs we are providing:</p>
+            </div>
+             <br>
+            <div class="row">
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-chart-bar"></i></a></div>
+                  <h4 class="title"><a href="">Histogram</a></h4>
+                  <p class="description">Histogram represents the frequency distribution of a continuous variable. It divides the data into intervals (bins) and shows the number of observations falling into each interval.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-box"></i></a></div>
+                   <h4 class="title"><a href="">Box plot</a></h4>
+                  <p class="description"> A visual summary of data distribution, displaying the median, quartiles, and outliers, providing insights into central tendency and variability.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-guitar"></i></a></div>
+                  <h4 class="title"><a href="">Violin plot</a></h4>
+                  <p class="description">A blend of a box plot and a kernel density plot, showing the distribution of the data along with its probability density, offering a comprehensive view of data distribution.</p>
+                </div>
+              </div>
+    
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-dot-circle-o"></i></a></div>
+                  <h4 class="title"><a href="">Dot-plot</a></h4>
+                  <p class="description">A simple yet effective method to visualize individual data points along a single axis, facilitating easy identification of patterns, outliers, and trends.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">insert_chart_outlined</i></a></div>
+                  <h4 class="title"><a href="">Quantitle-quantile plot</a></h4>
+                  <p class="description">A graphical tool to compare the distribution of two datasets, assessing if they originate from the same population distribution or not.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">multiline_chart</i></a></div>
+                  <h4 class="title"><a href="">Density plot</a></h4>
+                  <p class="description">A smoothed representation of the distribution of a continuous variable, aiding in understanding the shape and pattern of data distribution.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">scatter_plot</i></a></div>
+                  <h4 class="title"><a href="">Destribution plot</a></h4>
+                  <p class="description"> A comprehensive visualization illustrating the distribution of data, often through kernel density estimation or histogram representation, enabling easy interpretation of data spread and central tendency.</p>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="section-header">
+              <h3 class="section-title">Bivariate Graphs</h3>
+              <p class="section-description">Bivariate graphs are used to visualize the relationship between two variables. They help in understanding the correlation, patterns, and trends between the variables. Below are some common types of bivariate graphs we are providing:</p>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">bubble_chart</i></a></div>
+                  <h4 class="title"><a href="">Scatter plot</a></h4>
+                  <p class="description">Visualizes relationships between two variables by plotting points on a Cartesian plane, making it easy to identify correlations or patterns in data.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-chart-line"></i></a></div>
+                  <h4 class="title"><a href="">Line plot</a></h4>
+                  <p class="description">Illustrates trends over time or sequential data points, with data points connected by lines, providing a clear depiction of changes and patterns.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-bar-chart"></i></a></div>
+                  <h4 class="title"><a href="">Bar chart</a></h4>
+                  <p class="description">Displays categorical data with rectangular bars of lengths proportional to the values they represent, facilitating easy comparison between different categories.</p>
+                </div>
+              </div>
+    
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-chart-pie"></i></a></div>
+                  <h4 class="title"><a href="">Pie Chart</a></h4>
+                  <p class="description">Represents parts of a whole by dividing a circle into sectors, each corresponding to a proportion of the total, aiding in visualizing percentages or proportions.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-th"></i></a></div>
+                  <h4 class="title"><a href="">Correlation matrix</a></h4>
+                  <p class="description">Depicts the correlation coefficients between multiple variables in a tabular format, allowing for quick assessment of relationships and dependencies between variables</p>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="section-header">
+              <h3 class="section-title">Multivarite Graphs</h3>
+              <p class="section-description">Multivariate graphs are used to visualize relationships between multiple variables simultaneously. They help in understanding complex patterns and interactions among variables. Below are some common types of multivariate graphs we are providing:</p>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">gradient</i></a></div>
+                  <h4 class="title"><a href="">Heatmap</a></h4>
+                  <p class="description">Visualizes data in a matrix format using colors to represent values, making it easy to identify patterns and variations across two dimensions</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">scatter_plot</i></a></div>
+                  <h4 class="title"><a href="">3D scatter plot</a></h4>
+                  <p class="description">Extends the scatter plot into three dimensions, enabling visualization of relationships among three variables, often used for exploring complex data relationships.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">timeline</i></a></div>
+                  <h4 class="title"><a href="">Parallel coordinates plot</a></h4>
+                  <p class="description">Represents multivariate data by plotting each variable along a separate axis and connecting points corresponding to each data point, facilitating comparison and pattern recognition across multiple variables.</p>
+                </div>
+              </div>
+    
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">perm_identity</i></a></div>
+                  <h4 class="title"><a href="">Andrews plot</a></h4>
+                  <p class="description">Represents multivariate data by transforming each data point into a curve based on the coefficients of a Fourier series, enabling visualization of patterns and differences between groups.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">face</i></a></div>
+                  <h4 class="title"><a href="">Chernoff faces</a></h4>
+                  <p class="description">Utilizes facial features to represent multivariate data variables, where different facial characteristics such as eyes, nose, and mouth represent different variables, allowing for intuitive visualization and comparison.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">poll</i></i></a></div>
+                  <h4 class="title"><a href="">Radar chart</a></h4>
+                  <p class="description"> Displays multivariate data on a circular plot with each variable represented by a spoke, making it easy to compare the relative values of multiple variables across different categories or groups.</p>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="section-header">
+              <h3 class="section-title">Other Types of Charts</h3>
+              <p class="section-description">Here is the descriptions of some other types of charts:</p>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">view_module</i></a></div>
+                  <h4 class="title"><a href="">Treemap</a></h4>
+                  <p class="description">Visualizes hierarchical data structures using nested rectangles, with each rectangle representing a category or item and its size corresponding to a quantitative value, enabling easy comparison of proportions within the hierarchy.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">donut_large</i></a></div>
+                  <h4 class="title"><a href="">Sunburst chart</a></h4>
+                  <p class="description">Represents hierarchical data in a radial layout, where each ring represents a level of the hierarchy, and segments within rings correspond to categories or items, aiding in the visualization of hierarchical structures and proportions.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">all_inclusive</i></a></div>
+                  <h4 class="title"><a href="">Force-directed graph</a></h4>
+                  <p class="description">Illustrates relationships between entities using nodes and links, where nodes represent entities and links represent relationships, with the layout determined by simulated forces between nodes, facilitating exploration and visualization of complex networks.</p>
+                </div>
+              </div>
+    
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">linear_scale</i></a></div>
+                  <h4 class="title"><a href="">Sankey diagram</a></h4>
+                  <p class="description">Depicts flows and relationships between entities using directed arrows of varying widths, showing the magnitude of flow between nodes, making it useful for visualizing processes, flows, and relationships.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="material-icons">grid_on</i></a></div>
+                  <h4 class="title"><a href="">Covariance matrix</a></h4>
+                  <p class="description">Displays the covariance values between multiple variables in a tabular format, providing insights into the relationships and dependencies among variables.</p>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </section>
+  <!-- info section -->
+  <section class="info_section ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_logo">
+            <a class="navbar-brand" href="index.html">
+              <span>
+                DataWhiz
+              </span>
+            </a>
+            <p>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_info">
+            <h5>
+              Contact Us
+            </h5>
+          </div>
+          <div class="info_contact">
+             <a href="{{ map_link }}" class="">
+                 <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                 <span>
+                     Capital University of Science and technology
+                   </span>
+             </a>
+             
+             <a href="{{ phone_link }}" class="">
+                 <i class="fas fa-phone" aria-hidden="true"></i>
+                 <span>
+                     Call : +92 3205817220
+                   </span>
+             </a>
+ 
+             <a href="{{ email_link }}" class="">
+                 <i class="fas fa-envelope" aria-hidden="true"></i>
+                 <span>
+                     DataWhiz@gmail.com
+                   </span>
+             </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_links">
+            <h5>
+              Markets
+            </h5>
+            <ul>
+              <li>
+                Finance
+              </li>
+              <li>
+                Education
+              </li>
+              <li>
+                Healthcare
+              </li>
+              <li>
+                Transportation
+              </li>
+              <li>
+                Ecommerce
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_form ">
+            <div class="social_box">
+             <a href="{{ facebook_link }}">
+                 <i class="fab fa-facebook" aria-hidden="true"></i>
+             </a>
+             <a href="{{ twitter_link }}">
+                 <i class="fab fa-twitter" aria-hidden="true"></i>
+             </a>
+             <a href="{{ youtube_link }}">
+                 <i class="fab fa-youtube" aria-hidden="true"></i>
+             </a>
+              <a href="{{ instagram_link }}">
+                 <i class="fab fa-instagram" aria-hidden="true"></i>
+             </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- end info_section -->
+ 
+  <!-- footer section -->
+  <footer class="container-fluid footer_section">
+    <p>
+      &copy; <span id="currentYear"></span> All Rights Reserved. Design by
+      <a href="https://cust.edu.pk/">CUST</a>
+    </p>
+  </footer>
+  <!-- footer section -->
+     <!-- jQery -->
+     <script src="{{ url_for('static', filename='jquery-3.4.1.min.js') }}"></script>
+     <!-- bootstrap js -->
+     <script src="{{ url_for('static', filename='bootstrap.js') }}"></script>
+     <!-- custom js -->
+     <script src="{{ url_for('static', filename='custom.js') }}"></script>
+ </body>
+ 
+ </html>
+

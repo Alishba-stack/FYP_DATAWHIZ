@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}" />
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{{ url_for('static', filename='responsive.css') }}" rel="stylesheet" />
+    <style>
+      .hero_bg_box {
+        background-color: black;
+      }
+      form {
+          flex-direction: column;
+          align-items: center;
+          margin-top: -20px;
+      }
+      .fixed-size {
+        width: 500px;  
+        height: 300px; 
+        resize: auto;
+        overflow: auto;
+      }
+      .visualization_section {
+    display: flex;
+    align-items: flex-start; 
+    height: 500px; 
+    overflow-y: auto;
+}
+
+      .sidebar {
+        padding: 20px;
+      }
+      .menu {
+        list-style-type: none;
+        padding: 0;
+        margin: 0; 
+      }
+      .nav-item {
+        margin-bottom: 10px;
+        
+      }
+      .slider-container {
+        margin-bottom: 20px;
+      }
+      #analysisresults {
+    width: 100%;
+    height: 470px; 
+    resize: none; 
+    overflow: auto; 
+  }
+  .visualization_results {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 0px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 495px;
+  width: 450px;
+  margin-top: 5px;
+  margin-left: -20px;
+  overflow: hidden;
+
+}
+    </style>
+</head>
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <div class="hero_bg_box">
+      
+        </div>
+      
+        <header class="header_section">
+          <div class="header_top">
+              <div class="container-fluid">
+                  <div class="contact_link-container">
+                      <a href="{{ map_link }}" class="{{ map_class }}">
+                          <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                          <span>
+                              Capital University of Science & Technology
+                          </span>
+                      </a>
+                  </div>
+              </div>
+          </div>
+          <div class="header_bottom">
+              <div class="container-fluid">
+                  <nav class="navbar navbar-expand-lg custom_nav-container">
+                      <a class="navbar-brand" href="{{ url_for('index') }}">
+                          <span>
+                              DataWhiz
+                          </span>
+                      </a>
+                  </nav>
+              </div>
+          </div>
+      </header>
+        <!-- end header section -->
+     
+        <!-- Analysis section -->
+        {% if file_uploaded %}
+        <!-- Display file information if uploaded -->
+        <p class="fileuploaded" style="margin-left: 20px;">File uploaded: {{ filename }}</p>
+
+          <div class="section-header">
+            <div class="heading_container heading_center">
+              <h2 class="dashboardtitle">
+                Dashboard
+              </h2>
+            </div>
+        </div>
+  <section class="visualization_section layout_padding">
+   
+      <div class="row">
+          <!-- [ Sidebar Menu ] start -->
+          <div class="slider-container">
+<div class="sidebar">
+  <ul class="menu">
+      <li class="nav-item active"><a href="{{ url_for('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+      <li><a class="nav-item" href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a></li>
+      <li class="nav-item"><a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About</a></li>
+      <li class="nav-item"><a href="{{ url_for('chartsmetrices') }}"><i class="fas fa-chart-pie"></i> Charts & Metrics</a></li>
+<li class="nav-item"><a href="{{ url_for('analysisdescription') }}"><i class="fas fa-chart-line"></i> Analysis</a></li>
+<li class="nav-item"><a href="{{ url_for('regressionmodelsdescription') }}"><i class="fas fa-chart-bar"></i> Regression Models</a></li>
+<li class="nav-item"><a href="{{ url_for('testsdescription') }}"><i class="fas fa-flask"></i> Tests</a></li>
+      <li class="nav-item"><a  href="{{ url_for('contact') }}"><i class="fas fa-envelope"></i> Contact us</a></li>
+      <hr class="dashboardline">
+      <li class="nav-item"><a  href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt fa-lg"></i>Login</a></li>
+      <li class="nav-item"><a href="#" id="logout-link"><i class="fas fa-sign-out-alt fa-lg"></i>Logout</a></li>
+      
+  </ul>
+      </div>
+    </div>
+    <!-- [ Sidebar Menu ] end -->
+      <br>
+      <script>
+        // JavaScript code to handle the click event on the logout link
+        document.getElementById('logout-link').addEventListener('click', function(event) {
+            event.preventDefault();
+        
+            // Send a request to the logout endpoint using fetch API
+            fetch('/logout', {
+                method: 'GET',
+                credentials: 'same-origin'
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Redirect to the login page after successful logout
+                    window.location.href = '/login';
+                } else {
+                    // Handle error response
+                    console.error('Error logging out:', response.statusText);
+                    alert('Error logging out. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error logging out:', error);
+                alert('Error logging out. Please try again.');
+            });
+        });
+        </script>
+<!-- [ Main Content ] start -->
+<div class="content-wrapper">
+  <div class="container mt-4">
+    <!-- Statistics Row -->
+    <div class="row">
+      <div class="col-md-3 mb-4">
+        <div class="card custom-card1">
+          <div class="card-body">
+            <h5 class="card-title"><strong>Mean</strong></h5>
+            <p class="card-text" id="mean-value">{{ mean }}</p>
+            <div class="progress-ring" id="meanProgress"></div>
+  
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="card custom-card1">
+          <div class="card-body">
+            <h5 class="card-title"><strong>Median</strong></h5>
+            <p class="card-text" id="median-value">{{ median }}</p>
+            <div class="progress-ring" id="medianProgress"></div>
+          </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-5">
+          <div class="card custom-card1">
+            <div class="card-body">
+              <h5 class="card-title"><strong>Mode</strong></h5>
+              <p class="card-text" id="mode-value">{{ mode }}</p>
+              <div class="progress-ring" id="modeProgress"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-5">
+          <div class="card custom-card1">
+            <div class="card-body">
+              <h5 class="card-title"><strong>Standard Dev</strong></h5>
+              <p class="card-text" id="stddev-value">{{ std_deviation }}</p>
+              <div class="progress-ring" id="standarddeviationProgress"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="col-md-12 mb-4">
+          <div class="card custom-card">
+            <div>
+                <img class="dashboardchart" src="data:image/png;base64,{{ linechart }}" alt="Generated linechart">
+            </div>
+    </div>
+          <br>
+          <br>
+          <div class="card custom-card">
+            <div>
+                <img class="dashboardchart" src="data:image/png;base64,{{ histogram }}" alt="Generated Histogram">
+            </div>
+    </div>
+            <br>
+            <br>
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                  <div class="visualization_results" id="visualizationResults">
+                    <div class="card custom-card" class="analysisresultsdashboard">
+                        <div>
+                            <textarea  id="analysisresults" readonly class="fixed-size">{{ exploratoryanalysis }}</textarea>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                
+                    <div>
+                        <img  class="dashboardpiechart" src="data:image/png;base64,{{ piechart }}" alt="Generated piechart">
+                    </div>
+               
+              </div>
+              
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="recommendations-container">
+            <div class="col-md-12 mb-4">
+                <div class="card custom-card1 recommendedcharts">
+                    <div class="card-body">
+                      <h5 class="card-title"><strong>Recommended Charts</strong></h5>
+                        <ul>
+                            {% for chart in recommend_charts %}
+                            <li>{{ chart }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mb-4">
+                <div class="card custom-card1 recommendedanalysis">
+                    <div class="card-body">
+                      <h5 class="card-title"><strong>Recommended Analysis</strong></h5>
+                        <ul>
+                            {% for analysis in recommend_analysis %}
+                            <li>{{ analysis }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mb-4">
+                <div class="card custom-card1 recommendedmodels">
+                    <div class="card-body">
+                      <h5 class="card-title"><strong>Recommended Models</strong></h5>
+                        <ul>
+                            {% for model in recommend_models %}
+                            <li>{{ model }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mb-4">
+                <div class="card custom-card1 recommendedtest">
+                    <div class="card-body">
+                      <h5 class="card-title"><strong>Recommended Tests</strong></h5>
+                        <ul>
+                            {% for test in recommend_tests %}
+                            <li>{{ test }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card custom-card1">
+        <div>
+          <img src="data:image/png;base64,{{ heatmap }}" alt="Generated Heatmap">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+    </div>
+</div>
+<!-- [ Main Content ] End -->
+          {% else %}
+          <section class="dataset_section layout_padding">
+            <h2 class="center-text1">UNLOCK INSIGHTS</h2>
+            <ul class="progress">
+              <li class="completed">
+                  <span>
+                      <span class="order">1 </span>Upload Dataset
+                  </span>
+                  <div class="diagonal"></div>
+              </li>
+              <li>
+                  <span>
+                      <span class="order">2 </span>Data analysis
+                  </span>
+              </li>
+              <li>
+                  <span>
+                      <span class="order">3 </span>Download insights
+                  </span>
+              </li>
+          </ul>
+          <br>
+          <br>
+          <br>
+          <br>
+              <!-- End Buttons Banner Section -->
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6 px-5">
+                  <div class="detail-box" id="uploadContainer">
+                      <div class="heading_container">
+                          <h2>
+                              Upload Dataset!
+                          </h2>
+                      </div>
+                      <p>
+                          Click "Choose File" to Upload XLS/CSV file here...
+                      </p>
+                      <div class="img-box">
+                        <img class="icons" src="{{ url_for('static', filename='file.png') }}" alt="uploadfile">
+                        <div class="visualization-container">
+                      </div>
+                      <form action="/dashboard" method="POST" enctype="multipart/form-data">
+                        <input class="chooseFile" type="file" name="file" accept=".csv, .xlsx">
+                        <button class="btn" type="submit">Upload File</button>
+                    </form>
+                    {% if error_message %}
+                        <p class="errormessage">{{ error_message }}</p>
+                    {% endif %}
+                    {% if file_uploaded %}
+                        <p>File uploaded successfully!</p>
+                    {% endif %}
+                      </div>
+                  </div>
+              </div>
+                  </div>
+              </section>
+              <!-- end Dataset section -->
+         {% endif %}
+       
+      </div>
+    </div>
+  </section>
+  <!-- End model section -->  
+  </div>    
+        <!-- info section -->
+        <section class="info_section ">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="info_logo">
+                    <a class="navbar-brand" href="index.html">
+                      <span>
+                        DataWhiz
+                      </span>
+                    </a>
+                    <p>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="info_info">
+                    <h5>
+                      Contact Us
+                    </h5>
+                  </div>
+                  <div class="info_contact">
+                     <a href="{{ map_link }}" class="">
+                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                         <span>
+                             Capital University of Science and technology
+                           </span>
+                     </a>
+                     
+                     <a href="{{ phone_link }}" class="">
+                         <i class="fas fa-phone" aria-hidden="true"></i>
+                         <span>
+                             Call : +92 3205817220
+                           </span>
+                     </a>
+         
+                     <a href="{{ email_link }}" class="">
+                         <i class="fas fa-envelope" aria-hidden="true"></i>
+                         <span>
+                             DataWhiz@gmail.com
+                           </span>
+                     </a>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="info_links">
+                    <h5>
+                      Markets
+                    </h5>
+                    <ul>
+                      <li>
+                        Finance
+                      </li>
+                      <li>
+                        Education
+                      </li>
+                      <li>
+                        Healthcare
+                      </li>
+                      <li>
+                        Transportation
+                      </li>
+                      <li>
+                        Ecommerce
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="info_form ">
+                    <div class="social_box">
+                     <a href="{{ facebook_link }}">
+                         <i class="fab fa-facebook" aria-hidden="true"></i>
+                     </a>
+                     <a href="{{ twitter_link }}">
+                         <i class="fab fa-twitter" aria-hidden="true"></i>
+                     </a>
+                     <a href="{{ youtube_link }}">
+                         <i class="fab fa-youtube" aria-hidden="true"></i>
+                     </a>
+                      <a href="{{ instagram_link }}">
+                         <i class="fab fa-instagram" aria-hidden="true"></i>
+                     </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+         
+          <!-- end info_section -->
+         
+          <!-- footer section -->
+          <footer class="container-fluid footer_section">
+            <p>
+              &copy; <span id="currentYear"></span> All Rights Reserved. Design by
+              <a href="https://cust.edu.pk/">CUST</a>
+            </p>
+          </footer>
+          <!-- footer section -->
+             <!-- jQery -->
+             <script src="{{ url_for('static', filename='jquery-3.4.1.min.js') }}"></script>
+             <!-- bootstrap js -->
+             <script src="{{ url_for('static', filename='bootstrap.js') }}"></script>
+             <!-- custom js -->
+             <script src="{{ url_for('static', filename='custom.js') }}"></script>
+    </body>
+    </html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+    <title> Upload Dataset</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}" />
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{{ url_for('static', filename='responsive.css') }}" rel="stylesheet" />
+</head>
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <div class="hero_bg_box">
+      <div class="img-box">
+        <img src="{{ url_for('static', filename='hero-bg.jpg') }}" alt="">
+            </div>
+        </div>
+
+        <header class="header_section">
+            <div class="header_top">
+                <div class="container-fluid">
+                    <div class="contact_link-container">
+                        <a href="{{ map_link }}" class="{{ map_class }}">
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            <span>
+                                Capital University of Science & Technology
+                            </span>
+                          </a>                
+                    </div>
+                </div>
+            </div>
+            <div class="header_bottom">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg custom_nav-container">
+                        <a class="navbar-brand" href="{{ url_for('index') }}">
+                            <span>
+                                DataWhiz
+                            </span>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class=""></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+                            <ul class="navbar-nav  ">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('index') }}">Home <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('about') }}"> About</a>
+                                </li>
+                                <div class="dropdown">
+                                    <li class="nav-item active">
+                                        <a class="nav-link dropdown-toggle" class="dropbtn" href="{{ url_for('solutions') }}"> Solutions </a>
+                                    </li>
+                                    <div class="dropdown-content">
+                                      <a href="{{ url_for('askwhiz') }}">AskWhiz</a>
+                                      <a href="{{ url_for('visualization') }}" id="visualization-link">Visualization</a>
+                                      <a href="{{ url_for('analysis') }}" id="analysis-link">Analysis</a>
+                                      <a href="{{ url_for('model') }}">Model</a>
+                                      <a href="{{ url_for('test') }}">Test</a>
+                                    </div>
+                                </div>
+                                <li class="nav-item">
+                                  <a class="nav-link" href="{{ url_for('dashboard') }}"> Dashboard </a>
+                              </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('contact') }}">Contact us</a>
+                                </li>
+                            </ul>
+                            <div class="dropdown">
+                              <li class="nav-item dropdown">
+                              <a class="nav-link" class="dropbtn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  <img src="{{ url_for('static', filename='avater.jpg') }}" alt="user-image"
+                                      class="user-avatar rounded-circle img-fluid" style="max-width: 40px; height: auto;">
+                              </a>
+                               </li>
+                               <div class="dropdown-content">
+                                      <a href="{{ url_for('change_password') }}" class="dropdown-item">
+                                          <i class="fas fa-cog me-2"></i> 
+                                          Change password
+                                      </a>
+                                  
+                                      <a href="{{ url_for('signup') }}" class="dropdown-item">
+                                          <i class="fas fa-plus-circle me-2"></i>
+                                          Add account
+                                      </a>
+                                  
+                                  
+                                      <a href="#" id="logout-link" class="dropdown-item">
+                                          <i class="fas fa-power-off me-2"></i>
+                                          Logout
+                                      </a>
+                                </div>
+                              </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- end header section -->
+    <!-- Buttons Banner Section -->
+    <br>
+    <h2 class="center-text">UNLOCK INSIGHTS</h2>
+    <ul class="progress">
+      <li class="completed">
+          <span>
+              <span class="order">1 </span>Upload Dataset
+          </span>
+          <div class="diagonal"></div>
+      </li>
+      <li>
+          <span>
+              <span class="order">2 </span>Data analysis
+          </span>
+      </li>
+      <li>
+          <span>
+              <span class="order">3 </span>Download insights
+          </span>
+      </li>
+  </ul>
+    <!-- End Buttons Banner Section -->
+    <section class="dataset_section layout_padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 px-5">
+          <div class="detail-box" id="uploadContainer">
+              <div class="heading_container">
+                  <h2>
+                      Upload Dataset!
+                  </h2>
+              </div>
+              <p>
+                  Click "Choose File" to Upload XLS/CSV file here...
+              </p>
+              <div class="img-box">
+                <img class="icons" src="{{ url_for('static', filename='file.png') }}" alt="uploadfile">
+                <form action="/visualization" method="POST" enctype="multipart/form-data">
+                  <input class="chooseFile" type="file" name="file" accept=".csv, .xlsx" data-dataset="">
+                  <input type="hidden" name="dataset" id="hidden-dataset">
+                  <button class="btn" type="submit">Upload File</button>
+              </form>
+            {% if error_message %}
+                <p class="errormessage">{{ error_message }}</p>
+            {% endif %}
+            {% if file_uploaded %}
+                <p class="fileuploaded">File uploaded successfully!</p>
+            {% endif %}
+              </div>
+          </div>
+      </div>
+          </div>
+      </section>
+      <!-- end Dataset section -->
+   </div>
+<!-- info section -->
+<section class="info_section ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_logo">
+            <a class="navbar-brand" href="index.html">
+              <span>
+                DataWhiz
+              </span>
+            </a>
+            <p>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_info">
+            <h5>
+              Contact Us
+            </h5>
+          </div>
+          <div class="info_contact">
+             <a href="{{ map_link }}" class="">
+                 <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                 <span>
+                     Capital University of Science and technology
+                   </span>
+             </a>
+             
+             <a href="{{ phone_link }}" class="">
+                 <i class="fas fa-phone" aria-hidden="true"></i>
+                 <span>
+                     Call : +92 3205817220
+                   </span>
+             </a>
+ 
+             <a href="{{ email_link }}" class="">
+                 <i class="fas fa-envelope" aria-hidden="true"></i>
+                 <span>
+                     DataWhiz@gmail.com
+                   </span>
+             </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_links">
+            <h5>
+              Markets
+            </h5>
+            <ul>
+              <li>
+                Finance
+              </li>
+              <li>
+                Education
+              </li>
+              <li>
+                Healthcare
+              </li>
+              <li>
+                Transportation
+              </li>
+              <li>
+                Ecommerce
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_form ">
+            <div class="social_box">
+             <a href="{{ facebook_link }}">
+                 <i class="fab fa-facebook" aria-hidden="true"></i>
+             </a>
+             <a href="{{ twitter_link }}">
+                 <i class="fab fa-twitter" aria-hidden="true"></i>
+             </a>
+             <a href="{{ youtube_link }}">
+                 <i class="fab fa-youtube" aria-hidden="true"></i>
+             </a>
+              <a href="{{ instagram_link }}">
+                 <i class="fab fa-instagram" aria-hidden="true"></i>
+             </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- end info_section -->
+ 
+  <!-- footer section -->
+  <footer class="container-fluid footer_section">
+    <p>
+      &copy; <span id="currentYear"></span> All Rights Reserved. Design by
+      <a href="https://cust.edu.pk/">CUST</a>
+    </p>
+  </footer>
+  <!-- footer section -->
+     <!-- jQery -->
+     <script src="{{ url_for('static', filename='jquery-3.4.1.min.js') }}"></script>
+     <!-- bootstrap js -->
+     <script src="{{ url_for('static', filename='bootstrap.js') }}"></script>
+     <!-- custom js -->
+     <script src="{{ url_for('static', filename='custom.js') }}"></script>
+ </body>
+ 
+ </html>
+   

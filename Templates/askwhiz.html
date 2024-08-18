@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+    <title>AskWhiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}" />
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{{ url_for('static', filename='responsive.css') }}" rel="stylesheet" />
+    <style>
+      .hero_bg_box {
+        background-color: black;
+        min-height: 550px;
+      }
+      form {
+          flex-direction: column;
+          align-items: center;
+          margin-top: -20px;
+      }
+      
+      .visualization_section {
+    display: flex;
+    align-items: flex-start; 
+    height: 500px; 
+    overflow-y: auto;
+    }
+    h4{
+        margin-top: -50px;
+    }
+    h5{
+        text-align: center;
+        text-transform: capitalize;
+    }
+    h3{
+        text-align: center;
+        text-transform: capitalize;
+    }
+    .submitquery{
+        background-color:#f1db25;
+        color: #3d1c02;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        position: absolute;
+        right: 10px;
+    }
+
+    .submitquery:hover {
+        background-color: #3d1c02;
+        color:#f1db25;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .submitfile{
+        padding: 10px 20px;
+        background-color:  #f1db25;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-right: 10px;
+    }
+
+    .submitfile:hover {
+        background-color: #f1db25;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .user-query {
+    margin-top: -5px;
+    color: #3d1c02;
+    text-align: right;
+}
+
+.user-query-container {
+    display: inline-block;
+    background-color: #f1db25;
+    padding: 10px 10px;
+    border-radius: 20px;
+}
+
+.result-container {
+    background-color:#f0f0f0;
+    padding: 25px;
+    margin-top: 5px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    align-items: center;
+    text-align: right;
+    clear: both;
+}
+
+.result-icon {
+    font-size: 24px;
+    margin-right: 20px;
+}
+
+.result-content {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.center-align {
+            margin-left: -200px;
+        }
+        form input[type="file"] {
+        margin-bottom: -20px;
+    }
+
+        .file-upload-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+       
+        .input-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+        #query {
+            width: 750px;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: -35px;
+            box-sizing: border-box;
+            font-size: 16px;
+            margin-top: -40px;
+            flex: 1;
+            padding-right: 40px;
+        }
+        .fixed-size {
+            height: auto;
+            min-width: 1100px;
+            min-height: 400px;
+            border: none;
+            resize: none;
+            overflow: auto;
+            padding: 5px;
+            border-radius: 5px;
+            
+        }
+
+        .fixed-size:focus {
+            outline: none;
+        }
+
+        .response textarea, .analysis textarea, .test textarea {
+            transition: width 20s, height 20s;
+        }
+
+        img.chart-image {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .bottom-menu {
+        position: absolute;
+        bottom: 20px;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .chat-box {
+        border: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-radius: 5px;
+        max-width: 900px;
+        margin: 50px auto;
+        box-sizing: border-box;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-box textarea {
+        flex-grow: 1;
+        border: none;
+        padding: 10px;
+        margin-right: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+    }
+
+    .chat-box label {
+        cursor: pointer;
+    }
+
+    .chat-box input[type="file"] {
+        display: none;
+    }
+    #fileContents {
+        margin-top: -20px;
+        padding: 10px;
+        max-height: 300px;
+        max-width: 700px;
+        overflow-y: auto;
+        border-radius: 5px;
+
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        background-color: #fff;
+    }
+
+    th {
+        background-color: #f8f9fa;
+    }
+    .dashboardtitle {
+    text-align: left;
+    margin-left: 20px;
+}
+.hidden {
+            display: none;
+        }
+    .center-align {
+        text-align: center;
+    }
+    
+    </style>
+</head>
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <div class="hero_bg_box">
+      
+        </div>
+      
+        <header class="header_section">
+          <div class="header_top">
+              <div class="container-fluid">
+                  <div class="contact_link-container">
+                      <a href="{{ map_link }}" class="{{ map_class }}">
+                          <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                          <span>
+                              Capital University of Science & Technology
+                          </span>
+                      </a>
+                  </div>
+              </div>
+          </div>
+          <div class="header_bottom">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg custom_nav-container">
+                    <a class="navbar-brand" href="{{ url_for('index') }}">
+                        <span>
+                            DataWhiz
+                        </span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class=""></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+                        <ul class="navbar-nav  ">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('index') }}">Home <span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('about') }}"> About</a>
+                            </li>
+                            <div class="dropdown">
+                                <li class="nav-item active">
+                                    <a class="nav-link dropdown-toggle" class="dropbtn" href="{{ url_for('solutions') }}"> Solutions </a>
+                                </li>
+                                <div class="dropdown-content">
+                                  <a href="{{ url_for('askwhiz') }}">AskWhiz</a>
+                                  <a href="{{ url_for('visualization') }}" id="visualization-link">Visualization</a>
+                                  <a href="{{ url_for('analysis') }}" id="analysis-link">Analysis</a>
+                                  <a href="{{ url_for('model') }}">Model</a>
+                                  <a href="{{ url_for('test') }}">Test</a>
+                                </div>
+                            </div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('dashboard') }}"> Dashboard </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('contact') }}">Contact us</a>
+                            </li>
+                        </ul>
+                        <div class="dropdown">
+                          <li class="nav-item dropdown">
+                          <a class="nav-link" class="dropbtn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false">
+                              <img src="{{ url_for('static', filename='avater.jpg') }}" alt="user-image"
+                                  class="user-avatar rounded-circle img-fluid" style="max-width: 40px; height: auto;">
+                          </a>
+                           </li>
+                           <div class="dropdown-content">
+                                  <a href="{{ url_for('change_password') }}" class="dropdown-item">
+                                      <i class="fas fa-cog me-2"></i> 
+                                      Change password
+                                  </a>
+                              
+                                  <a href="{{ url_for('signup') }}" class="dropdown-item">
+                                      <i class="fas fa-plus-circle me-2"></i>
+                                      Add account
+                                  </a>
+                              
+                              
+                                  <a href="#" id="logout-link" class="dropdown-item">
+                                      <i class="fas fa-power-off me-2"></i>
+                                      Logout
+                                  </a>
+                            </div>
+                          </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+      </header>
+        <!-- end header section -->
+        {% if file_uploaded %}
+        <div class="section-header">
+            <div class="heading_container heading_center">
+              <br>
+              <br>
+              <h2 class="dashboardtitle">
+                AskWhiz
+              </h2>
+            </div>
+        </div>
+    <div class="content-wrapper">
+        <div class="container">
+            <br>
+            <br>
+            <br>
+            <div>
+                    {% if filename %}
+                    <p class="fileuploaded">File uploaded: {{ filename }}</p>
+            </div>
+                    {% endif %}
+                    <!-- Display file content -->
+                    <div class="file-content" style="width: 750px; height: 300px; overflow: auto;">
+                        <div style="width: fit-content;">
+                            {{ file_content_html|safe }}
+                        </div>
+                        
+                    </div>
+            <div class="center-align">
+                <!-- File upload form -->
+                <form id="uploadForm" class="upload-form" action="/askwhiz" method="POST" enctype="multipart/form-data">
+                    <input id="fileInput" class="chooseFile" type="file" name="file" accept=".csv, .xlsx" required>
+                    <button class="btn" type="submit">Upload File</button>
+                </form>
+        
+                <!-- Display file details and query form -->
+                <div id="fileDetails" class="hidden">
+                    
+                </div>
+        
+                <!-- Results container -->
+                <div class="result-container">
+                    <div class="result-icon"></div>
+                     <!-- Display user's query -->
+                     <div class="user-query">
+                        <br>
+            
+            
+                        {% if query %}
+                        <p><span class="user-query-container"><strong>Query:</strong> {{ query }}</span></p>
+                        {% endif %}
+                    </div>
+                    <div class="result-content">
+                        <!-- Display AI response, charts, analysis, models, tests -->
+                        {% if response %}
+                        <div>
+                            <div class="response">
+                                <textarea readonly class="fixed-size">{{ response }}</textarea>
+                            </div>
+                        </div>
+                        {% endif %}
+        
+                        {% if chart_data %}
+                        <div>
+                            {% for chart_type, chart_image_data in chart_data.items() %}
+                            <div class="chart">
+                                <h3>{{ chart_type }}</h3>
+                                <img src="data:image/png;base64,{{ chart_image_data }}" alt="Generated Chart" class="chart-image">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+        
+                        {% if analysis_results %}
+                        <div>
+                            {% for analysis_type, result in analysis_results.items() %}
+                            <div class="analysis">
+                                <h3>{{ analysis_type }}</h3>
+                                <textarea readonly class="fixed-size">{{ result }}</textarea>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+        
+                        {% if model_data %}
+                        <div>
+                            {% for model_type, model_data in model_data.items() %}
+                            <div class="model">
+                                <h3>{{ model_type }}</h3>
+                                <img src="data:image/png;base64,{{ model_data }}" alt="Model Result">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+        
+                        {% if test_results %}
+                        <div>
+                            {% for test_type, result in test_results.items() %}
+                            <div class="test">
+                                <h3>{{ test_type }}</h3>
+                                <textarea readonly class="fixed-size">{{ result }}</textarea>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <form id="query-form" action="/chatbot" method="POST" enctype="multipart/form-data">
+                    <div class="input-container">
+                    <input name="chart-query" type="text" id="query" required placeholder="Type your message here...">
+    
+                    <!-- Hidden input to store the filename -->
+                    <input type="hidden" name="filename" id="filenameInput" value="{{ filename }}">
+                    <!-- Submit button -->
+                    <button class="submitquery" id="submitQuery" type="submit">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                    </div>
+                
+                </form>
+            </div>
+        </div>
+    </div>    
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const fileInput = document.getElementById('fileInput');
+                const fileDetails = document.getElementById('fileDetails');
+                const uploadForm = document.getElementById('uploadForm');
+                const queryForm = document.getElementById('query-form');
+                const filenameInput = document.getElementById('filenameInput');
+        
+                // Check if there's a filename in the template to show file details
+                const filename = "{{ filename }}";
+                if (filename) {
+                    fileDetails.classList.remove('hidden');
+                    uploadForm.classList.add('hidden');
+                    filenameInput.value = filename; // Set filename in the hidden input
+                }
+        
+                uploadForm.addEventListener('submit', function (event) {
+                    if (fileInput.files.length === 0) {
+                        event.preventDefault();
+                        alert('Please select a file to upload.');
+                    } else {
+                        fileDetails.classList.remove('hidden');
+                        uploadForm.classList.add('hidden');
+                        const fileName = fileInput.files[0].name;
+                        filenameInput.value = fileName; // Set filename in the hidden input
+                    }
+                });
+        
+                queryForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+        
+                    const query = document.getElementById('query').value.trim().toLowerCase();
+        
+                    // List of valid chart types
+                    const chartTypes = ["histogram", "box_plot", "violin_plot", "dot_plot", "quantile-quantile_plot", "density_plot", "distribution_plot", "scatter_plot", "line_plot", "bar_chart", "pie_chart", "correlation_matrix", "heatmap", "3d_scatter_plot", "parallel_coordinate_plot", "andrews_plot", "radar_chart", "chernoff_faces", "tree_map", "sunburst_chart", "force_directed_graph", "sankey_diagram", "covariance_matrix"];
+        
+                    // List of valid analysis types
+                    const analysisTypes = ["exploratory_data_analysis", "descriptive_statistics", "inferential_statistics", "hypothesis_testing", "correlation_analysis", "regression_analysis", "time_series_analysis", "clustering", "classification", "dimensionality_reduction"];
+        
+                    // List of valid model types
+                    const modelTypes = ["linear_regression", "multiple_regression", "logistic_regression", "poisson_regression", "negative_binomial_regression", "ridge_regression", "elastic_net_regression", "time_series_regression", "lasso_regression", "random_forest_regression"];
+        
+                    // List of valid test types
+                    const testTypes = ["t_test", "null_and_hypothesis_test", "anova", "chi_square_test", "mann_whitney_u_test", "kolmogorov_smirnov_test", "shapiro_wilk_test", "durbin_watson_test", "breusch_godfrey_test", "heteroscedasticity_test", "multicollinearity_test"];
+        
+                    // Split the query into parts
+                    const queries = query.split(',').map(q => q.trim());
+        
+                    let hasValidQuery = false;
+        
+                    queries.forEach(q => {
+                        if (chartTypes.includes(q)) {
+                            hasValidQuery = true;
+                            // Create a hidden input to send the selected chart type
+                            const hiddenChartType = document.createElement('input');
+                            hiddenChartType.type = 'hidden';
+                            hiddenChartType.name = 'chart-type';
+                            hiddenChartType.value = q;
+                            queryForm.appendChild(hiddenChartType);
+                        } else if (analysisTypes.includes(q)) {
+                            hasValidQuery = true;
+                            // Create a hidden input to send the selected analysis type
+                            const hiddenAnalysisType = document.createElement('input');
+                            hiddenAnalysisType.type = 'hidden';
+                            hiddenAnalysisType.name = 'analysis-type';
+                            hiddenAnalysisType.value = q;
+                            queryForm.appendChild(hiddenAnalysisType);
+                        } else if (modelTypes.includes(q)) {
+                            hasValidQuery = true;
+                            // Create a hidden input to send the selected model type
+                            const hiddenModelType = document.createElement('input');
+                            hiddenModelType.type = 'hidden';
+                            hiddenModelType.name = 'model-type';
+                            hiddenModelType.value = q;
+                            queryForm.appendChild(hiddenModelType);
+                        } else if (testTypes.includes(q)) {
+                            hasValidQuery = true;
+                            // Create a hidden input to send the selected test type
+                            const hiddenTestType = document.createElement('input');
+                            hiddenTestType.type = 'hidden';
+                            hiddenTestType.name = 'test-type';
+                            hiddenTestType.value = q;
+                            queryForm.appendChild(hiddenTestType);
+                        }
+                    });
+        
+                    if (!hasValidQuery) {
+                        // If no valid query, proceed with the general AI response
+                        const hiddenGeneralQuery = document.createElement('input');
+                        hiddenGeneralQuery.type = 'hidden';
+                        hiddenGeneralQuery.name = 'general-query';
+                        hiddenGeneralQuery.value = query;
+                        queryForm.appendChild(hiddenGeneralQuery);
+                    }
+        
+                    // Submit the form
+                    queryForm.submit();
+                });
+            });
+        </script>
+    
+
+<!-- [ Main Content ] End -->
+          {% else %}
+          <section class="dataset_section layout_padding">
+            <h2 class="center-text1">UNLOCK INSIGHTS</h2>
+            <ul class="progress">
+              <li class="completed">
+                  <span>
+                      <span class="order">1 </span>Upload Dataset
+                  </span>
+                  <div class="diagonal"></div>
+              </li>
+              <li>
+                  <span>
+                      <span class="order">2 </span>Data analysis
+                  </span>
+              </li>
+              <li>
+                  <span>
+                      <span class="order">3 </span>Download insights
+                  </span>
+              </li>
+          </ul>
+          <br>
+          <br>
+          <br>
+          <br>
+              <!-- End Buttons Banner Section -->
+              <div class="container">
+                  <div class="col-md-6 px-5">
+                  <div class="detail-box" id="uploadContainer">
+                      <div class="heading_container">
+                          <h2>
+                              Upload Dataset!
+                          </h2>
+                      </div>
+                      <p>
+                          Click "Choose File" to Upload XLS/CSV file here...
+                      </p>
+                      <div class="img-box">
+                        <img class="icons" src="{{ url_for('static', filename='file.png') }}" alt="uploadfile">
+                        <div class="visualization-container">
+                      </div>
+                      <form id="uploadForm" class="upload-form" action="/askwhiz" method="POST" enctype="multipart/form-data">
+                        <input id="fileInput" class="chooseFile" type="file" name="file" accept=".csv, .xlsx">
+                        <button class="btn" type="submit">Upload File</button>
+                    </form>
+                    {% if error_message %}
+                        <p class="errormessage">{{ error_message }}</p>
+                    {% endif %}
+                    {% if file_uploaded %}
+                        <p>File uploaded successfully!</p>
+                    {% endif %}
+                      </div>
+                  </div>
+              </div>
+              </section>
+              <!-- end Dataset section -->
+         {% endif %}
+       
+  </section>
+  <!-- End model section -->  
+  </div>    
+    
+          <!-- footer section -->
+             <!-- jQery -->
+             <script src="{{ url_for('static', filename='jquery-3.4.1.min.js') }}"></script>
+             <!-- bootstrap js -->
+             <script src="{{ url_for('static', filename='bootstrap.js') }}"></script>
+             <!-- custom js -->
+             <script src="{{ url_for('static', filename='custom.js') }}"></script>
+    </body>
+    </html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+    <title>Visualization</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}" />
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{{ url_for('static', filename='responsive.css') }}" rel="stylesheet" />
+    <style>
+      form {
+          flex-direction: column;
+          align-items: center;
+          margin-top: -20px;
+      }
+
+      .visualization_section {
+    min-height: 800px;
+}
+  </style>
+</head>
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <div class="hero_bg_box">
+      <div class="img-box">
+        <img src="{{ url_for('static', filename='hero-bg.jpg') }}" alt="">
+            </div>
+        </div>
+      
+        <header class="header_section">
+            <div class="header_top">
+                <div class="container-fluid">
+                    <div class="contact_link-container">
+                        <a href="{{ map_link }}" class="{{ map_class }}">
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            <span>
+                                Capital University of Science & Technology
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="header_bottom">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg custom_nav-container">
+                        <a class="navbar-brand" href="{{ url_for('index') }}">
+                            <span>
+                                DataWhiz
+                            </span>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class=""></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+                            <ul class="navbar-nav  ">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('index') }}">Home <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('about') }}"> About</a>
+                                </li>
+                                <div class="dropdown">
+                                    <li class="nav-item active">
+                                        <a class="nav-link dropdown-toggle" class="dropbtn" href="{{ url_for('solutions') }}"> Solutions </a>
+                                    </li>
+                                    <div class="dropdown-content">
+                                      <a href="{{ url_for('askwhiz') }}">AskWhiz</a>
+                                      <a href="{{ url_for('visualization') }}" id="visualization-link">Visualization</a>
+                                      <a href="{{ url_for('analysis') }}" id="analysis-link">Analysis</a>
+                                      <a href="{{ url_for('model') }}">Model</a>
+                                      <a href="{{ url_for('test') }}">Test</a>
+                                    </div>
+                                </div>
+                                <li class="nav-item">
+                                  <a class="nav-link" href="{{ url_for('dashboard') }}"> Dashboard </a>
+                              </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('contact') }}">Contact us</a>
+                                </li>
+                            </ul>
+                            <div class="dropdown">
+                              <li class="nav-item dropdown">
+                              <a class="nav-link" class="dropbtn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  <img src="{{ url_for('static', filename='avater.jpg') }}" alt="user-image"
+                                      class="user-avatar rounded-circle img-fluid" style="max-width: 40px; height: auto;">
+                              </a>
+                               </li>
+                               <div class="dropdown-content">
+                                      <a href="{{ url_for('change_password') }}" class="dropdown-item">
+                                          <i class="fas fa-cog me-2"></i> 
+                                          Change password
+                                      </a>
+                                  
+                                      <a href="{{ url_for('signup') }}" class="dropdown-item">
+                                          <i class="fas fa-plus-circle me-2"></i>
+                                          Add account
+                                      </a>
+                                  
+                                  
+                                      <a href="{{ url_for('logout') }}" id="logout-link" class="dropdown-item">
+                                          <i class="fas fa-power-off me-2"></i>
+                                          Logout
+                                      </a>
+                                </div>
+                              </div> 
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- end header section -->
+    <!-- Buttons Banner Section -->
+    <br>
+    <!-- Display file information if uploaded -->
+  <p class="fileuploaded" style="margin-left: 20px;">File uploaded: {{ filename }}</p>
+    <ul class="progress">
+      <li class="completed">
+          <span>
+              <span class="order">1 </span>Upload Dataset
+          </span>
+      </li>
+      <li class="completed">
+          <span>
+              <span class="order">2 </span>Data analysis
+          </span>
+          <div class="diagonal"></div>
+      </li>
+      <li>
+          <span>
+              <span class="order">3 </span>Download insights
+          </span>
+      </li>
+  </ul>
+    <!-- End Buttons Banner Section -->
+  <!-- Visualization section -->
+  
+  <section class="visualization_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="visualization_buttons">
+            <button class="chart_button active" onclick="changeButtonState(this)">Chart Type</button>
+            <button id="publishButton" class="chart_button" onclick= "changeButtonState(this), publishChart()">Publish Chart</button>
+            <script>
+              var downloadButtonCreated = false;
+
+              function changeButtonState(button) {
+                  var buttons = document.querySelectorAll('.chart_button');
+                  buttons.forEach(function(btn) {
+                      btn.classList.remove('active');
+                  });
+          
+                  // Add the 'active' class to the clicked button
+                  button.classList.add('active');
+              }
+          
+              function publishChart() {
+    var chartData = "{{ chart }}";
+    var chartGenerated = chartData ? true : false;
+
+    // Check if chart is not generated
+    if (!chartGenerated) {
+        alert("Please generate the chart first.");
+        return;
+    }
+
+    var xLabel = document.getElementById('x-label').value;
+
+    
+
+    // Proceed with chart generation
+    if (!downloadButtonCreated) { // Check if download button is not created yet
+        var yLabel = document.getElementById('y-label').value;
+        var zLabel = document.getElementById('z-label').value;
+        var selectedChartType = document.getElementById('selected-chart-type').value;
+
+        // Proceed with generating the chart
+        var downloadButton = document.createElement("button");
+        downloadButton.innerHTML = "Download Chart";
+        downloadButton.classList.add("download_btn");
+
+        // Add an event listener to the download button
+        downloadButton.addEventListener("click", function () {
+            // Get the chart image data
+            var chartImage = document.getElementById("chartImage");
+            var imageData = chartImage.src;
+
+            var link = document.createElement("a");
+            link.href = imageData;
+            link.download = "chart_image.png";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        document.body.appendChild(downloadButton);
+
+        downloadButtonCreated = true; // Set flag to indicate that download button is created
+
+        // Toggle active state for the button
+        changeButtonState(document.querySelector('.chart_button.active'));
+
+        var publishButton = document.querySelector('.chart_button.active');
+        publishButton.disabled = true;
+    }
+}
+
+// Function to check if a string represents a numeric value
+function isNumeric(value) {
+    return /^\d+$/.test(value);
+}
+    // Function to show labels based on the selected chart type
+function showLabels(chartType) {
+    // Hide all label containers
+    document.getElementById('x-label-container').style.display = 'none';
+    document.getElementById('y-label-container').style.display = 'none';
+    document.getElementById('z-label-container').style.display = 'none';
+
+    // Show labels based on the selected chart type
+    if (chartType === 'univariate') {
+        document.getElementById('x-label-container').style.display = 'block';
+    } else if (chartType === 'bivariate') {
+        document.getElementById('x-label-container').style.display = 'block';
+        document.getElementById('y-label-container').style.display = 'block';
+    } else if (chartType === 'multivariate' || chartType === 'other') {
+        document.getElementById('x-label-container').style.display = 'block';
+        document.getElementById('y-label-container').style.display = 'block';
+        document.getElementById('z-label-container').style.display = 'block';
+    }
+}
+
+// Function to handle chart type button clicks
+function handleChartTypeButtonClick(chartType) {
+    // Set the selected chart type in the hidden input field
+    document.getElementById('selected-chart-type').value = chartType;
+
+    // Show labels based on the selected chart type
+    showLabels(chartType);
+}
+
+// Function to initialize the page
+function initializePage() {
+    // Add event listeners to chart type buttons
+    var chartTypeButtons = document.querySelectorAll('.analysis-type-btn');
+    chartTypeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            handleChartTypeButtonClick(this.value);
+        });
+    });
+}
+
+// Call initializePage function when the page is loaded
+window.onload = initializePage;
+
+          </script>
+            <form id="chart-form" action="/generate_chart" method="POST">
+            <div class="row mt-5">
+                <div class="col-md-6">
+                  <div class="visualization_box_with_icon" id="univariateChartsButton">
+                    <i class="fas fa-chart-bar" aria-hidden="true"></i>
+             <button type="button" class="analysis-type-btn" value="univariate">Uni-variate graphs</button>
+          </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="visualization_box_with_icon" id="bivariateChartsButton">
+                    <i class=" fas fa-chart-line" aria-hidden="true"></i>
+                  </a>
+                    <button type="button" class="analysis-type-btn" value="bivariate">Bi-variate graphs</button>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="visualization_box_with_icon" id="multivariateChartsButton">
+                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
+                    <button type="button" class="analysis-type-btn" value="multivariate">Multivariate graphs</button>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="visualization_box_with_icon">
+                    <i class="fas fa-chart-area" aria-hidden="true"></i>
+                    <button type="button" class="analysis-type-btn" value="other">Other graphs</button>
+                  </div>
+                </div>
+              </div>
+              <!-- Dynamic div to show chart type buttons based on user selection -->
+            <div class="chart-type-buttons" id="chart-type-buttons-container">
+            </div>
+
+              <!-- Add hidden input field to store selected chart type -->
+              <input type="hidden" id="selected-chart-type" name="chart-type" value="">
+           <!-- Label and dropdown for selecting X label -->
+<!-- Label and dropdown for selecting X label -->
+<div id="x-label-container" style="display: none;">
+  <label for="x-label">Select X-label:</label>
+  <select id="x-label" name="x-label" required>
+      {% for attribute in attributes %}
+      <option value="{{ attribute }}">{{ attribute }}</option>
+      {% endfor %}
+  </select>
+</div>
+
+<!-- Label and dropdown for selecting Y label -->
+<div id="y-label-container" style="display: none;">
+  <label for="y-label">Select Y-label:</label>
+  <select id="y-label" name="y-label" required>
+      {% for attribute in attributes %}
+      <option value="{{ attribute }}">{{ attribute }}</option>
+      {% endfor %}
+  </select>
+</div>
+
+<!-- Label and dropdown for selecting Z label -->
+<div id="z-label-container" style="display: none;">
+  <label for="z-label">Select Z-label:</label>
+  <select id="z-label" name="z-label" required>
+      {% for attribute in attributes %}
+      <option value="{{ attribute }}">{{ attribute }}</option>
+      {% endfor %}
+  </select>
+</div>
+
+            <!-- Hidden input to store the filename -->
+            <input type="hidden" name="filename" value="{{ filename }}">
+            <button class="generate_chart" type="submit">Generate Chart</button>
+        </form>
+         </div>
+          </div>
+          <div class="visualization_results" id="visualizationResults">
+            {% if chart %}
+            <!-- Display the generated chart if available -->
+            <div>
+                <img id="chartImage" src="data:image/png;base64,{{ chart }}" alt="Generated Chart">
+            </div>
+            {% endif %}
+          </div>
+      </div>
+    </div>
+</section>
+  <!-- End Visualization section -->
+
+   </div>
+<!-- info section -->
+<section class="info_section ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_logo">
+            <a class="navbar-brand" href="index.html">
+              <span>
+                DataWhiz
+              </span>
+            </a>
+            <p>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_info">
+            <h5>
+              Contact Us
+            </h5>
+          </div>
+          <div class="info_contact">
+             <a href="{{ map_link }}" class="">
+                 <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                 <span>
+                     Capital University of Science and technology
+                   </span>
+             </a>
+             
+             <a href="{{ phone_link }}" class="">
+                 <i class="fas fa-phone" aria-hidden="true"></i>
+                 <span>
+                     Call : +92 3205817220
+                   </span>
+             </a>
+ 
+             <a href="{{ email_link }}" class="">
+                 <i class="fas fa-envelope" aria-hidden="true"></i>
+                 <span>
+                     DataWhiz@gmail.com
+                   </span>
+             </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_links">
+            <h5>
+              Markets
+            </h5>
+            <ul>
+              <li>
+                Finance
+              </li>
+              <li>
+                Education
+              </li>
+              <li>
+                Healthcare
+              </li>
+              <li>
+                Transportation
+              </li>
+              <li>
+                Ecommerce
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_form ">
+            <div class="social_box">
+             <a href="{{ facebook_link }}">
+                 <i class="fab fa-facebook" aria-hidden="true"></i>
+             </a>
+             <a href="{{ twitter_link }}">
+                 <i class="fab fa-twitter" aria-hidden="true"></i>
+             </a>
+             <a href="{{ youtube_link }}">
+                 <i class="fab fa-youtube" aria-hidden="true"></i>
+             </a>
+              <a href="{{ instagram_link }}">
+                 <i class="fab fa-instagram" aria-hidden="true"></i>
+             </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- end info_section -->
+ 
+  <!-- footer section -->
+  <footer class="container-fluid footer_section">
+    <p>
+      &copy; <span id="currentYear"></span> All Rights Reserved. Design by
+      <a href="https://cust.edu.pk/">CUST</a>
+    </p>
+  </footer>
+  <!-- footer section -->
+     <!-- jQery -->
+     <script src="{{ url_for('static', filename='jquery-3.4.1.min.js') }}"></script>
+     <!-- bootstrap js -->
+     <script src="{{ url_for('static', filename='bootstrap.js') }}"></script>
+     <!-- custom js -->
+     <script src="{{ url_for('static', filename='custom.js') }}"></script>
+ </body>
+ 
+ </html>
+   
+   

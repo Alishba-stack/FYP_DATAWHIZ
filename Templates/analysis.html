@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+    <title>Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}" />
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{{ url_for('static', filename='responsive.css') }}" rel="stylesheet" />
+    <style>
+      form {
+          flex-direction: column;
+          align-items: center;
+          margin-top: -20px;
+      }
+      input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 20px;
+   
+}
+
+      .visualization_section {
+    min-height: 1050px;
+}
+
+.fixed-size {
+            width: 500px;  
+            height: 450px; 
+            resize: auto;
+            overflow: auto;
+        }
+  </style>
+</head>
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <div class="hero_bg_box">
+      <div class="img-box">
+        <img src="{{ url_for('static', filename='hero-bg.jpg') }}" alt="">
+            </div>
+        </div>
+      
+        <header class="header_section">
+            <div class="header_top">
+                <div class="container-fluid">
+                    <div class="contact_link-container">
+                        <a href="{{ map_link }}" class="{{ map_class }}">
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            <span>
+                                Capital University of Science & Technology
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="header_bottom">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg custom_nav-container">
+                        <a class="navbar-brand" href="{{ url_for('index') }}">
+                            <span>
+                                DataWhiz
+                            </span>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class=""></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+                            <ul class="navbar-nav  ">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('index') }}">Home <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('about') }}"> About</a>
+                                </li>
+                                <div class="dropdown">
+                                    <li class="nav-item active">
+                                        <a class="nav-link dropdown-toggle" class="dropbtn" href="{{ url_for('solutions') }}"> Solutions </a>
+                                    </li>
+                                    <div class="dropdown-content">
+                                      <a href="{{ url_for('askwhiz') }}">AskWhiz</a>
+                                      <a href="{{ url_for('visualization') }}" id="visualization-link">Visualization</a>
+                                      <a href="{{ url_for('analysis') }}" id="analysis-link">Analysis</a>
+                                      <a href="{{ url_for('model') }}">Model</a>
+                                      <a href="{{ url_for('test') }}">Test</a>
+                                    </div>
+                                </div>
+                                <li class="nav-item">
+                                  <a class="nav-link" href="{{ url_for('dashboard') }}"> Dashboard </a>
+                              </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('contact') }}">Contact us</a>
+                                </li>
+                            </ul>
+                            <div class="dropdown">
+                              <li class="nav-item dropdown">
+                              <a class="nav-link" class="dropbtn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  <img src="{{ url_for('static', filename='avater.jpg') }}" alt="user-image"
+                                      class="user-avatar rounded-circle img-fluid" style="max-width: 40px; height: auto;">
+                              </a>
+                               </li>
+                               <div class="dropdown-content">
+                                      <a href="{{ url_for('change_password') }}" class="dropdown-item">
+                                          <i class="fas fa-cog me-2"></i> 
+                                          Change password
+                                      </a>
+                                  
+                                      <a href="{{ url_for('signup') }}" class="dropdown-item">
+                                          <i class="fas fa-plus-circle me-2"></i>
+                                          Add account
+                                      </a>
+                                  
+                                  
+                                      <a href="{{ url_for('logout') }}" id="logout-link" class="dropdown-item">
+                                          <i class="fas fa-power-off me-2"></i>
+                                          Logout
+                                      </a>
+                                </div>
+                              </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- end header section -->
+        <!-- Analysis section -->
+        {% if file_uploaded %}
+        <!-- Display file information if uploaded -->
+  <p class="fileuploaded" style="margin-left: 20px;">File uploaded: {{ filename }}</p>
+        <ul class="progress">
+          <li class="completed">
+              <span>
+                  <span class="order">1 </span>Upload Dataset
+              </span>
+          </li>
+          <li class="completed">
+              <span>
+                  <span class="order">2 </span>Data analysis
+              </span>
+              <div class="diagonal"></div>
+          </li>
+          <li>
+              <span>
+                  <span class="order">3 </span>Download insights
+              </span>
+          </li>
+      </ul>
+  <section class="visualization_section layout_padding">
+    <div class="container">
+      <!-- End Buttons Banner Section -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="visualization_buttons">
+            <button class="chart_button active" onclick="changeButtonState(this)">Analysis Type</button>
+            <button id="publishButton" class="chart_button" onclick= "changeButtonState(this), publishChart()">Publish Result</button>
+            <script>
+              var downloadButtonCreated = false;
+          
+              // Function to handle button state changes
+        function changeButtonState(button) {
+            var buttons = document.querySelectorAll('.chart_button');
+            buttons.forEach(function (btn) {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+        }
+
+        // Function to clear analysis results textarea
+        function clearAnalysisResults() {
+            var analysisResultsTextarea = document.getElementById('analysisresults');
+            analysisResultsTextarea.value = '';
+        }
+
+        // Function to handle publishing chart
+        var downloadButtonCreated = false;
+
+        function publishChart() {
+            var analysis = document.getElementById("analysisresults").value;
+
+            if (!analysis || analysis.trim().length === 0) {
+                alert("Please generate the Analysis first.");
+                return;
+            }
+
+            if (!downloadButtonCreated) {
+                var downloadButton = document.createElement("button");
+                downloadButton.innerHTML = "Download Analysis";
+                downloadButton.classList.add("download_btn");
+
+                var blob = new Blob([analysis], { type: 'application/msword' });
+
+                downloadButton.addEventListener("click", function () {
+                    var link = document.createElement("a");
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = "analysis_result.docx";
+
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+
+                document.body.appendChild(downloadButton);
+                downloadButtonCreated = true;
+
+                changeButtonState(document.querySelector('.chart_button.active'));
+
+                var publishButton = document.querySelector('.chart_button.active');
+                publishButton.disabled = true;
+            }
+        }
+
+        // Script for handling button clicks and updating hidden input
+        document.addEventListener('DOMContentLoaded', function () {
+            const analysisButtons = document.querySelectorAll('.analysis-type-btn');
+            const hiddenInput = document.getElementById('selected-analysis-type');
+
+            analysisButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    hiddenInput.value = this.value;
+                    clearAnalysisResults(); // Clear the analysis results when a button is clicked
+                });
+            });
+        });
+          </script>
+          
+          
+            <form id="analysis-form" action="/analyze" method="POST">
+              <div class="row mt-5">
+                <!-- Buttons for different analysis types -->
+                <div class="col-md-6">
+                    <div class="visualization_box_with_icon">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <button type="button" class="analysis-type-btn" value="exploratory_data_analysis">Exploratory Data Analysis</button>
+                    </div>
+                </div>
+            
+                <div class="col-md-6">
+                    <div class="visualization_box_with_icon">
+                        <i class="fas fa-list-alt" aria-hidden="true"></i>
+                        <button type="button" class="analysis-type-btn" value="descriptive_statistics">Descriptive Statistics</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="visualization_box_with_icon">
+                        <i class="fas fa-bullseye" aria-hidden="true"></i>
+                        <button type="button" class="analysis-type-btn" value="inferential_statistics">Inferential Statistics</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="visualization_box_with_icon">
+                        <i class="fas fa-clipboard-check" aria-hidden="true"></i>
+                        <button type="button" class="analysis-type-btn" value="hypothesis_testing">Hypothesis Testing</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="visualization_box_with_icon">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        <button type="button" class="analysis-type-btn" value="regression_analysis">Regression Analysis</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="visualization_box_with_icon">
+                        <i class="fas fa-sitemap" aria-hidden="true"></i>
+                        <button type="button" class="analysis-type-btn" value="correlation_analysis">Correlation Analysis</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="visualization_box_with_icon">
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        <button type="button" class="analysis-type-btn" value="time_series_analysis">Time-Series Analysis</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="visualization_box_with_icon">
+                        <i class="fas fa-chart-area" aria-hidden="true"></i>
+                        <button type="button" class="analysis-type-btn" value="clustering">Clustering</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="visualization_box_with_icon">
+                        <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                        <button type="button" class="analysis-type-btn" value="classification">Classification</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="visualization_box_with_icon">
+                        <i class="fas fa-compress-arrows-alt" aria-hidden="true"></i>
+                        <button type="button" class="analysis-type-btn" value="dimensionality_reduction">Dimensionality Reduction</button>
+                    </div>
+                </div>
+            </div>
+            
+                    <!-- Hidden input to store selected analysis type -->
+                    <input type="hidden" id="selected-analysis-type" name="analysis-type" value="">
+
+                      <!-- Script for handling button clicks and updating hidden input -->
+                      <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const analysisButtons = document.querySelectorAll('.analysis-type-btn');
+                            const hiddenInput = document.getElementById('selected-analysis-type');
+                    
+                            analysisButtons.forEach(button => {
+                                button.addEventListener('click', function () {
+                                    hiddenInput.value = this.value;
+                                });
+                            });
+                        });
+                    </script>
+                       <!-- Selecting variables and confidence level -->
+                        <label for="confidencelevel">Confidence Level:</label>
+                        <input type="number" id="confidencelevel" name="confidencelevel" step="0.01" min="0" max="1" value="0.95" required>
+                        <!-- Hidden input to store the filename -->
+                        <input type="hidden" name="filename" value="{{ filename }}">
+                        <!-- Button to submit the form and perform analysis -->
+                        <button class="perform_analysis" type="submit">Perform Analysis</button>
+        </form>
+         </div>
+          </div>
+          <div class="visualization_results" id="visualizationResults">
+            {% if analysis %}
+                <div>
+                    <textarea id="analysisresults" readonly class="fixed-size">{{ analysis }}</textarea>
+                </div>
+                {% endif %}
+          </div>
+          {% else %}
+          <section class="dataset_section layout_padding">
+            <h2 class="center-text1">UNLOCK INSIGHTS</h2>
+            <ul class="progress">
+              <li class="completed">
+                  <span>
+                      <span class="order">1 </span>Upload Dataset
+                  </span>
+                  <div class="diagonal"></div>
+              </li>
+              <li>
+                  <span>
+                      <span class="order">2 </span>Data analysis
+                  </span>
+              </li>
+              <li>
+                  <span>
+                      <span class="order">3 </span>Download insights
+                  </span>
+              </li>
+          </ul>
+          <br>
+          <br>
+          <br>
+          <br>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6 px-5">
+                  <div class="detail-box" id="uploadContainer">
+                      <div class="heading_container">
+                          <h2>
+                              Upload Dataset!
+                          </h2>
+                      </div>
+                      <p>
+                          Click "Choose File" to Upload XLS/CSV file here...
+                      </p>
+                      <div class="img-box">
+                        <img class="icons" src="{{ url_for('static', filename='file.png') }}" alt="uploadfile">
+                        <div class="visualization-container">
+                      </div>
+                      <form action="/analysis" method="POST" enctype="multipart/form-data">
+                        <input class="chooseFile" type="file" name="file" accept=".csv, .xlsx">
+                        <button class="btn" type="submit">Upload File</button>
+                    </form>
+                 
+                    {% if error_message %}
+                        <p class="errormessage">{{ error_message }}</p>
+                    {% endif %}
+                    {% if file_uploaded %}
+                        <p>File uploaded successfully!</p>
+                    {% endif %}
+                      </div>
+                  </div>
+              </div>
+                  </div>
+              </section>
+              {% endif %}
+              <!-- end Dataset section -->
+                  
+      </div>
+    </div>
+</section>
+  <!-- End analysis section -->
+
+           </div>
+        <!-- info section -->
+        <section class="info_section ">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="info_logo">
+                    <a class="navbar-brand" href="index.html">
+                      <span>
+                        DataWhiz
+                      </span>
+                    </a>
+                    <p>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="info_info">
+                    <h5>
+                      Contact Us
+                    </h5>
+                  </div>
+                  <div class="info_contact">
+                     <a href="{{ map_link }}" class="">
+                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                         <span>
+                             Capital University of Science and technology
+                           </span>
+                     </a>
+                     
+                     <a href="{{ phone_link }}" class="">
+                         <i class="fas fa-phone" aria-hidden="true"></i>
+                         <span>
+                             Call : +92 3205817220
+                           </span>
+                     </a>
+         
+                     <a href="{{ email_link }}" class="">
+                         <i class="fas fa-envelope" aria-hidden="true"></i>
+                         <span>
+                             DataWhiz@gmail.com
+                           </span>
+                     </a>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="info_links">
+                    <h5>
+                      Markets
+                    </h5>
+                    <ul>
+                      <li>
+                        Finance
+                      </li>
+                      <li>
+                        Education
+                      </li>
+                      <li>
+                        Healthcare
+                      </li>
+                      <li>
+                        Transportation
+                      </li>
+                      <li>
+                        Ecommerce
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="info_form ">
+                    <div class="social_box">
+                     <a href="{{ facebook_link }}">
+                         <i class="fab fa-facebook" aria-hidden="true"></i>
+                     </a>
+                     <a href="{{ twitter_link }}">
+                         <i class="fab fa-twitter" aria-hidden="true"></i>
+                     </a>
+                     <a href="{{ youtube_link }}">
+                         <i class="fab fa-youtube" aria-hidden="true"></i>
+                     </a>
+                      <a href="{{ instagram_link }}">
+                         <i class="fab fa-instagram" aria-hidden="true"></i>
+                     </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- end info_section -->
+         
+          <!-- footer section -->
+          <footer class="container-fluid footer_section">
+            <p>
+              &copy; <span id="currentYear"></span> All Rights Reserved. Design by
+              <a href="https://cust.edu.pk/">CUST</a>
+            </p>
+          </footer>
+          <!-- footer section -->
+             <!-- jQery -->
+             <script src="{{ url_for('static', filename='jquery-3.4.1.min.js') }}"></script>
+             <!-- bootstrap js -->
+             <script src="{{ url_for('static', filename='bootstrap.js') }}"></script>
+             <!-- custom js -->
+             <script src="{{ url_for('static', filename='custom.js') }}"></script>
+    </body>
+    </html>
+
+   

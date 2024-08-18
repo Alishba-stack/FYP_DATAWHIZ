@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+    <title>Solutions</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}" />
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{{ url_for('static', filename='responsive.css') }}" rel="stylesheet" />
+    <style>
+      /* Add custom styles here */
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      #services {
+  background: #fff;
+  background-size: cover;
+  padding: 80px 0 60px 0;
+}
+
+#services .box {
+  padding: 50px 20px;
+  margin-bottom: 50px;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  height: 215px;
+  position: relative;
+  background: #fafafa;
+}
+
+#services .icon {
+  position: absolute;
+  top: -36px;
+  left: calc(50% - 36px);
+  transition: 0.2s;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 72px;
+  height: 72px;
+  background: #f1db25;
+}
+
+#services .icon a {
+  display: inline-block;
+}
+
+#services .icon i {
+  color: #fff;
+  font-size: 24px;
+  line-height: 2;
+}
+
+#services .box:hover .icon {
+  background: #fff;
+  border: 2px solid #f1db25;
+}
+
+#services .box:hover .icon i {
+  color: #f1db25;
+}
+
+#services .box:hover .icon a {
+  color: #f1db25;
+}
+
+#services .title {
+  font-weight: 700;
+  font-family: sans-serif;
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+#services .title a {
+  color: #111;
+}
+
+#services .description {
+  font-size: 14px;
+  line-height: 24px;
+}
+h3{
+  font-weight: bold;
+  font-family: sans-serif;
+}
+h3::after {
+  display: inline-block;
+    content: "";
+    border-top: .1rem solid black;
+    width: 10rem;
+    margin: 0 1rem;
+    margin-bottom: -10px;
+    transform: translateY(-1rem);
+   
+}
+.hero_bg_box {
+    background-color: black;
+}
+    </style>
+</head>
+
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <div class="hero_bg_box">
+      <div class="img-box">
+        
+            </div>
+        </div>
+
+        <header class="header_section">
+            <div class="header_top">
+                <div class="container-fluid">
+                    <div class="contact_link-container">
+                        <a href="{{ map_link }}" class="{{ map_class }}">
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            <span>
+                                Capital University of Science & Technology
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="header_bottom">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg custom_nav-container">
+                        <a class="navbar-brand" href="{{ url_for('index') }}">
+                            <span>
+                                DataWhiz
+                            </span>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class=""></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+                            <ul class="navbar-nav  ">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('index') }}">Home <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('about') }}"> About</a>
+                                </li>
+                              
+                                  <li class="nav-item active">
+                                      <a class="nav-link" href="{{ url_for('solutions') }}"> Solutions </a>
+                                  </li>
+                               
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('contact') }}">Contact us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- end header section -->
+  </div>
+
+    <!-- service section -->
+
+   
+        <section id="services">
+          <div class="container" data-aos="fade-up">
+            <div class="section-header">
+              <div class="heading_container heading_center">
+                <h2>
+                  Data Analysis 
+                </h2>
+              </div>
+              <br>
+            </div>
+             <br>
+            <div class="row">
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-search"></i></a></div>
+                  <h4 class="title"><a href="">Exploratory Data Analysis (EDA)</a></h4>
+                  <p class="description">The process of analyzing data sets to summarize their main characteristics, often employing visual methods to uncover patterns, trends, and anomalies.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-list-alt"></i></a></div>
+                   <h4 class="title"><a href="">Descriptive Statistics</a></h4>
+                  <p class="description">Techniques used to summarize and describe the key features of a data set, including measures such as mean, median, mode, variance, and standard deviation.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-bullseye"></i></a></div>
+                  <h4 class="title"><a href="">Inferential Statistics</a></h4>
+                  <p class="description">Methods used to make inferences or predictions about a population based on a sample of data, including hypothesis testing, confidence intervals, and regression analysis.</p>
+                </div>
+              </div>
+    
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-clipboard-check"></i></a></div>
+                  <h4 class="title"><a href="">Hypothesis Testing</a></h4>
+                  <p class="description">Statistical tests used to assess the likelihood of observing a particular outcome under different conditions, helping to make decisions and draw conclusions about populations based on sample data.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i  class="fas fa-sitemap"></i></a></div>
+                  <h4 class="title"><a href="">Correlation Analysis</a></h4>
+                  <p class="description">Examines the strength and direction of the relationship between two or more variables, often using correlation coefficients to quantify the degree of association.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-chart-line"></i></a></div>
+                  <h4 class="title"><a href="">Regression Analysis</a></h4>
+                  <p class="description">Investigates the relationship between a dependent variable and one or more independent variables, estimating the effect of predictors on the outcome variable.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-clock"></i></a></div>
+                  <h4 class="title"><a href="">Time Series Analysis</a></h4>
+                  <p class="description">Analyzes time-ordered data to identify patterns, trends, and seasonal variations, often using techniques such as decomposition, smoothing, and forecasting.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-chart-area"></i></a></div>
+                  <h4 class="title"><a href="">Clustering</a></h4>
+                  <p class="description">Groups similar data points together based on their characteristics or attributes, aiming to uncover hidden patterns or structures within the data.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-chart-bar"></i></a></div>
+                  <h4 class="title"><a href="">Classification</a></h4>
+                  <p class="description"> Assigns predefined categories or labels to data instances based on their features, often using machine learning algorithms to build predictive models.</p>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                <div class="box">
+                  <div class="icon"><a href=""><i class="fas fa-compress-arrows-alt"></i></a></div>
+                  <h4 class="title"><a href="">Dimensionality Reduction</a></h4>
+                  <p class="description">Reduces the number of variables or features in a data set while preserving its essential information, aiding in visualization, analysis, and model building.</p>
+                </div>
+              </div>
+          </div>
+        </section>
+  <!-- info section -->
+  <section class="info_section ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_logo">
+            <a class="navbar-brand" href="index.html">
+              <span>
+                DataWhiz
+              </span>
+            </a>
+            <p>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_info">
+            <h5>
+              Contact Us
+            </h5>
+          </div>
+          <div class="info_contact">
+             <a href="{{ map_link }}" class="">
+                 <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                 <span>
+                     Capital University of Science and technology
+                   </span>
+             </a>
+             
+             <a href="{{ phone_link }}" class="">
+                 <i class="fas fa-phone" aria-hidden="true"></i>
+                 <span>
+                     Call : +92 3205817220
+                   </span>
+             </a>
+ 
+             <a href="{{ email_link }}" class="">
+                 <i class="fas fa-envelope" aria-hidden="true"></i>
+                 <span>
+                     DataWhiz@gmail.com
+                   </span>
+             </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_links">
+            <h5>
+              Markets
+            </h5>
+            <ul>
+              <li>
+                Finance
+              </li>
+              <li>
+                Education
+              </li>
+              <li>
+                Healthcare
+              </li>
+              <li>
+                Transportation
+              </li>
+              <li>
+                Ecommerce
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_form ">
+            <div class="social_box">
+             <a href="{{ facebook_link }}">
+                 <i class="fab fa-facebook" aria-hidden="true"></i>
+             </a>
+             <a href="{{ twitter_link }}">
+                 <i class="fab fa-twitter" aria-hidden="true"></i>
+             </a>
+             <a href="{{ youtube_link }}">
+                 <i class="fab fa-youtube" aria-hidden="true"></i>
+             </a>
+              <a href="{{ instagram_link }}">
+                 <i class="fab fa-instagram" aria-hidden="true"></i>
+             </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- end info_section -->
+ 
+  <!-- footer section -->
+  <footer class="container-fluid footer_section">
+    <p>
+      &copy; <span id="currentYear"></span> All Rights Reserved. Design by
+      <a href="https://cust.edu.pk/">CUST</a>
+    </p>
+  </footer>
+  <!-- footer section -->
+     <!-- jQery -->
+     <script src="{{ url_for('static', filename='jquery-3.4.1.min.js') }}"></script>
+     <!-- bootstrap js -->
+     <script src="{{ url_for('static', filename='bootstrap.js') }}"></script>
+     <!-- custom js -->
+     <script src="{{ url_for('static', filename='custom.js') }}"></script>
+ </body>
+ 
+ </html>
